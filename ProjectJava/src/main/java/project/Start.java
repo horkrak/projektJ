@@ -24,12 +24,12 @@ public class Start extends JFrame implements ActionListener {
    public JMenuItem iPomoc;
    public JMenuItem iAutor;
    public static Game gra;
-   public static ImageIcon ikonka;
+   public ImageIcon ikonka;
 
 
    public Start() {
       super("Saper - Normalna (40)");
-      //this.setDefaultCloseOperation(3);
+      this.setDefaultCloseOperation(3);
       ikonka = new ImageIcon(this.getClass().getResource("/images/bomba.gif"));
       this.setIconImage(ikonka.getImage());
       this.menu = new JMenuBar();
