@@ -76,7 +76,7 @@ public class Game extends Canvas implements MouseListener, MouseMotionListener {
    }
 
    public void rozmieszczenieBomb(int b) {
-	  this.bomby = b;
+	  this.setBomby(b);
       boolean rx = false;
       boolean ry = false;
 
@@ -89,7 +89,7 @@ public class Game extends Canvas implements MouseListener, MouseMotionListener {
          }
       }
 
-      for(index = 0; index < bomby; ++index) {
+      for(index = 0; index < getBomby(); ++index) {
          int var6;
          int var7;
          do {
@@ -339,11 +339,19 @@ public class Game extends Canvas implements MouseListener, MouseMotionListener {
          }
       }
 
-      if(iTrawa == 0 && iflaga == bomby) {
+      if(iTrawa == 0 && iflaga == getBomby()) {
          this.removeMouseListener(this);
          sluchacz = false;
          JOptionPane.showMessageDialog((Component)null, "Wygra³eœ rozminowa³eœ pole", "GRATULACJE", 1);
       }
 
    }
+
+public int getBomby() {
+	return bomby;
+}
+
+public void setBomby(int bomby) {
+	this.bomby = bomby;
+}
 }
