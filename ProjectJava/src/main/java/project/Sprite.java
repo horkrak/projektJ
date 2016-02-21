@@ -4,7 +4,7 @@ import project.SpriteLoad;
 import java.awt.Graphics2D;
 import java.awt.image.ImageObserver;
 
-public class Sprite {
+public class Sprite implements DrukujEkran {
 
    public SpriteLoad sprite;
    public int[] paleta = new int[4];
