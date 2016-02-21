@@ -19,8 +19,8 @@ public class SpriteLoad {
 
       try {
          this.image = ImageIO.read(SpriteLoad.class.getResourceAsStream(path));
-      } catch (IOException var4) {
-         var4.printStackTrace();
+      } catch (IOException e) {
+         e.printStackTrace();
       }
 
       if(this.image != null) {

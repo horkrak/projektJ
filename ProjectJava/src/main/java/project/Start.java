@@ -1,9 +1,11 @@
 package project;
 
 import project.Game;
+
 import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
@@ -11,7 +13,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 
-public class Start extends JFrame implements ActionListener {
+public class Start<T> extends JFrame implements ActionListener {
 
    public JMenuBar menu;
    public JMenu mGra;
@@ -25,11 +27,11 @@ public class Start extends JFrame implements ActionListener {
    public JMenuItem iAutor;
    public static Game gra;
    public ImageIcon ikonka;
-
-
+   
    public Start() {
-      super("Saper - Normalna (40)");
-      this.setDefaultCloseOperation(3);
+	  
+	  this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	  this.setTitle("Saper - Normalna (40)");
       ikonka = new ImageIcon(this.getClass().getResource("/images/bomba.gif"));
       this.setIconImage(ikonka.getImage());
       this.menu = new JMenuBar();
@@ -43,6 +45,8 @@ public class Start extends JFrame implements ActionListener {
       this.iTrudna = new JMenuItem("Trudna");
       this.iExit = new JMenuItem("Exit");
       gra = new Game();
+      Medium M = new Medium();      
+      M.nowaGra(gra);
       this.mNowaGra.add(this.iLatwa);
       this.mNowaGra.add(this.iSrednia);
       this.mNowaGra.add(this.iTrudna);
@@ -66,8 +70,8 @@ public class Start extends JFrame implements ActionListener {
       this.setVisible(true);
    }
 
-   public static void main(String[] args) {
-      new Start();
+   public static void main(String[] args) {	   
+       new Start();
    }
 
    public void actionPerformed(ActionEvent e) {
@@ -76,34 +80,38 @@ public class Start extends JFrame implements ActionListener {
          System.exit(0);
       } 
       else if(cel == this.iLatwa) {
-         Game.bomby = 12;
-         this.setTitle("Saper - £atwa (30)");
-         gra.rozmieszczenieBomb();
-         if(!Game.sluchacz) {
-            gra.addMouseListener(gra);
-         }
+         this.setTitle("Saper - £atwa (20 bomb)");
 
-         gra.paint(gra.getGraphics());
+    
+         Easy l = new Easy();
+         l.nowaGra(gra);
+         if(!Game.sluchacz) {
+             gra.addMouseListener(gra);
+          }
+
+      //   gra.paint(gra.getGraphics());
       } 
       else if(cel == this.iSrednia) {
-         Game.bomby = 40;
-         this.setTitle("Saper - Normalna (40)");
-         gra.rozmieszczenieBomb();
-         if(!Game.sluchacz) {
-            gra.addMouseListener(gra);
-         }
+         this.setTitle("Saper - Normalna (35 bomb)");
 
-         gra.paint(gra.getGraphics());
+         Medium l = new Medium();
+         l.nowaGra(gra);
+         if(!Game.sluchacz) {
+             gra.addMouseListener(gra);
+          }
+
+         //gra.paint(gra.getGraphics());
       } 
       else if(cel == this.iTrudna) {
-         Game.bomby = 60;
-         this.setTitle("Saper - Trudna (60)");
-         gra.rozmieszczenieBomb();
+         this.setTitle("Saper - Trudna (50 bomb)");
+
+         Hard l = new Hard();
+         l.nowaGra(gra);
          if(!Game.sluchacz) {
             gra.addMouseListener(gra);
          }
 
-         gra.paint(gra.getGraphics());
+         //gra.paint(gra.getGraphics());
       } 
       else if(cel == this.iPomoc) {
          JOptionPane.showMessageDialog((Component)null, "Gra polega na odkrywaniu na planszy poszczególnych pól w taki sposób, aby nie natrafiæ na minê.        \nNa ka¿dym z odkrytych pól napisana jest liczba min, które bezpoœrednio stykaj¹ siê z danym polem\n(od zera do oœmiu). Jeœli oznaczymy dane pole flag¹, jest ono zabezpieczone przed ods³oniêciem,\ndziêki czemu przez przypadek nie ods³onimy miny.", "Jak graæ", 1);

@@ -23,7 +23,7 @@ public class Game extends Canvas implements MouseListener, MouseMotionListener {
    public static final int WYS_SPR = 30;
    public static int szePla = 23;
    public static int wysPla = 17;
-   public static int bomby = 40;
+   private int bomby;
    private BufferedImage image;
    private Graphics2D grafika;
    private Sprite sprite;
@@ -49,7 +49,6 @@ public class Game extends Canvas implements MouseListener, MouseMotionListener {
       this.addMouseListener(this);
       sluchacz = true;
       this.addMouseMotionListener(this);
-      this.rozmieszczenieBomb();
    }
 
    public void drawPlansza() {
@@ -76,7 +75,8 @@ public class Game extends Canvas implements MouseListener, MouseMotionListener {
       this.drawPlansza();
    }
 
-   public void rozmieszczenieBomb() {
+   public void rozmieszczenieBomb(int b) {
+	  this.bomby = b;
       boolean rx = false;
       boolean ry = false;
 
